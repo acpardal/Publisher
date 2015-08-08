@@ -19,7 +19,7 @@ import soundsystem.MediaPlayer;
 public class CDPlayerTest {
 
 	@Rule
-	public final SystemOutRule log = new SystemOutRule();
+	public final SystemOutRule log = new SystemOutRule().enableLog();
 	
 	@Autowired
 	private MediaPlayer player;
@@ -32,12 +32,11 @@ public class CDPlayerTest {
 		assertNotNull(cd);
 	}
 	
+	//I'm testing this in windows so \r\n
 	@Test
 	public void play() {
 		player.play();
-		assertEquals(
-				"Playing Sgt. Pepper's Lonely Hearts Club Band" +
-				" by The Beatles\n",
-				log.getLog());
+		assertEquals("Playing Sgt. Pepper's Lonely Hearts Club Band" +
+				" by The Beatles\r\n",log.getLog());
 	}
 }
